@@ -1,81 +1,75 @@
-const steps = [
+// ─── howItWorks.js ─────────────────────────────────────────────────────────
+// Selaras dengan About & Features: blob dekor, badge eyebrow, data-reveal.
+// Bedanya: bentuknya timeline bernomor dengan garis penghubung putus-putus,
+// bukan grid kartu, biar section ini punya identitas visual sendiri.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const STEPS = [
   {
-    number: "01",
-    title: "Daftar",
-    desc: "Buat akun dan lengkapi informasi dasar mengenai UMKM yang ingin dipromosikan.",
+    title: "Chat kebutuhanmu",
+    desc: "Kirim detail: barang, lokasi, tugas, atau kondisi ruangan — apapun kebutuhannya.",
   },
   {
-    number: "02",
-    title: "Pilih Layanan",
-    desc: "Pilih layanan atau solusi digital yang sesuai dengan kebutuhan bisnis Anda.",
+    title: "Kami hitung & konfirmasi",
+    desc: "Harga, biaya jasa, dan estimasi waktu dikonfirmasi dulu sebelum kamu bayar.",
   },
   {
-    number: "03",
-    title: "Website Siap",
-    desc: "Tim kami membantu menghadirkan website profesional yang siap digunakan.",
+    title: "Helper kerjakan",
+    desc: "Helper yang sesuai kemampuan langsung turun tangan menyelesaikan permintaanmu.",
+  },
+  {
+    title: "Terima & kasih rating",
+    desc: "Cek hasilnya, minta revisi kalau perlu, lalu beri rating buat helper-nya.",
   },
 ];
 
 export function HowItWorks() {
   return `
-    
-    <section class="section bg-slate-50" id="cara-kerja">
+    <section id="cara-kerja" class="how-section">
 
-        <div class="container-custom">
+      <!-- Dekorasi background (pola identik Hero/About/Features) -->
+      <div class="how-decor" aria-hidden="true">
+        <div class="how-blob how-blob-1"></div>
+        <div class="how-blob how-blob-2"></div>
+        <div class="how-dot-grid"></div>
+      </div>
 
-            <div class="text-center max-w-2xl mx-auto">
+      <div class="container-nav relative z-10">
 
-                <p class="text-blue-600 font-semibold">
-                    Cara Kerja
-                </p>
+        <div class="how-header" data-reveal>
+          <div class="hero-badge" style="display:inline-flex">
+            <span class="about-badge-dot"></span>
+            <span>Cara Kerja</span>
+          </div>
 
-                <h2 class="mt-3 text-4xl font-bold">
-                    Hanya 3 Langkah Mudah
-                </h2>
+          <h2 class="how-heading">
+            Dari chat pertama,
+            <span class="how-heading-accent">sampai selesai</span>
+          </h2>
 
-                <p class="mt-5 text-paragraph leading-8">
-                    Memulai digitalisasi UMKM kini menjadi lebih mudah, cepat, dan tanpa proses yang rumit.
-                </p>
-
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-8 mt-20">
-
-                ${steps
-                  .map(
-                    (step) => `
-                
-                <div class="relative bg-white rounded-3xl border border-slate-200 p-8 text-center hover:shadow-lg transition">
-
-                    <div class="w-16 h-16 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
-
-                        ${step.number}
-
-                    </div>
-
-                    <h3 class="mt-6 text-2xl font-semibold">
-
-                        ${step.title}
-
-                    </h3>
-
-                    <p class="mt-4 text-paragraph leading-7">
-
-                        ${step.desc}
-
-                    </p>
-
-                </div>
-
-                `,
-                  )
-                  .join("")}
-
-            </div>
-
+          <p class="how-desc">
+            Nggak ada proses ribet. Cuma empat langkah ini yang bakal kamu lalui
+            setiap kali butuh bantuan dari kami.
+          </p>
         </div>
 
-    </section>
+        <div class="how-steps">
+          ${STEPS.map(
+            (step, i) => `
+            <div class="how-step" data-reveal style="transition-delay:${i * 100}ms">
+              <div class="how-step-marker">
+                <span class="how-step-circle">${i + 1}</span>
+              </div>
+              <div class="how-step-body">
+                <h3 class="how-step-title">${step.title}</h3>
+                <p class="how-step-desc">${step.desc}</p>
+              </div>
+            </div>
+          `,
+          ).join("")}
+        </div>
 
-    `;
+      </div>
+    </section>
+  `;
 }

@@ -126,7 +126,7 @@ export function About() {
 
             <p class="about-desc">
               BANTU.IN hadir untuk mahasiswa dan warga Bandung yang butuh
-              bantuan sehari-hari — dari jastip, antar-jemput, kerjain tugas,
+              bantuan sehari-hari dari jastip, antar-jemput, kerjain tugas,
               sampai beberes kamar. Cukup chat, tim kami langsung bergerak.
             </p>
 

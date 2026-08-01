@@ -1,94 +1,90 @@
-const faqs = [
+// ─── faq.js ────────────────────────────────────────────────────────────────
+// Selaras Hero/About/Features/HowItWorks: blob dekor, badge eyebrow,
+// data-reveal. Accordion single-open dengan animasi height yang halus
+// (pola sama seperti mobile-panel di navbar).
+// ─────────────────────────────────────────────────────────────────────────────
+
+const FAQS = [
   {
-    question: "Apakah BANTU.IN gratis?",
-    answer: "Ya. Anda dapat memulai secara gratis untuk mengenal layanan kami.",
-  },
-  {
-    question: "Bagaimana cara membuat website?",
+    question: "Bagaimana cara pesan layanan BANTU.IN?",
     answer:
-      "Cukup pilih layanan, isi data UMKM, kemudian website akan diproses.",
+      "Chat lewat WhatsApp, kirim detail kebutuhanmu — barang, lokasi, tugas, atau kondisi ruangan. Kami hitung harga dan konfirmasi dulu sebelum kamu bayar.",
   },
   {
-    question: "Apakah bisa diakses melalui HP?",
-    answer: "Ya. Semua website yang dibuat bersifat responsive.",
-  },
-  {
-    question: "Berapa lama proses pengerjaan?",
+    question: "Apa saja yang termasuk dalam biaya jastip?",
     answer:
-      "Tergantung kebutuhan, namun website sederhana dapat selesai dalam beberapa hari.",
+      "Harga barang, biaya jasa, dan ongkos antar. Semuanya dihitung dan dikonfirmasi di awal, jadi nggak ada biaya siluman yang muncul belakangan.",
   },
   {
-    question: "Apakah website dapat dikembangkan lagi?",
+    question: "Apakah bantuan akademik termasuk mengerjakan ujian?",
     answer:
-      "Tentu. Website dibuat agar mudah ditambah fitur baru di masa depan.",
+      "Tidak. Kami bantu riset, desain, editing, proofreading, coding, dan konsultasi — bukan mengerjakan ujian atau tugas utuh untuk diklaim sebagai karya sendiri.",
+  },
+  {
+    question: "Ada bukti kalau barang sudah diantar?",
+    answer:
+      "Ada. Setiap antar-jemput difoto saat barang diambil dan saat diterima, jadi kamu tetap tenang meskipun nggak melihat langsung prosesnya.",
+  },
+  {
+    question: "Wilayah mana saja yang dilayani?",
+    answer:
+      "Saat ini kami fokus di area Bandung, khususnya sekitar Universitas Teknologi Bandung. Chat kami dulu untuk mengecek jangkauan ke lokasimu.",
+  },
+  {
+    question: "Berapa lama waktu respon BANTU.IN?",
+    answer:
+      "Rata-rata 15 menit setelah kamu chat. Tim langsung cek ketersediaan dan konfirmasi harga sebelum lanjut ke pengerjaan.",
   },
 ];
 
 export function FAQ() {
   return `
+    <section id="faq" class="faq-section">
 
-<section id="faq" class="section">
+      <!-- Dekorasi background (pola identik section lain) -->
+      <div class="faq-decor" aria-hidden="true">
+        <div class="faq-blob faq-blob-1"></div>
+        <div class="faq-dot-grid"></div>
+      </div>
 
-<div class="container-custom">
+      <div class="container-nav relative z-10">
 
-<div class="text-center max-w-2xl mx-auto">
+        <div class="faq-header" data-reveal>
+          <div class="hero-badge" style="display:inline-flex">
+            <span class="about-badge-dot"></span>
+            <span>FAQ</span>
+          </div>
 
-<p class="text-blue-600 font-semibold">
+          <h2 class="faq-heading">
+            Pertanyaan yang
+            <span class="faq-heading-accent">sering ditanyakan</span>
+          </h2>
 
-FAQ
+          <p class="faq-desc">
+            Masih ragu? Ini jawaban dari pertanyaan yang paling sering masuk ke kami.
+          </p>
+        </div>
 
-</p>
-
-<h2 class="mt-3 text-4xl font-bold">
-
-Pertanyaan yang Sering Ditanyakan
-
-</h2>
-
-<p class="mt-5 text-paragraph">
-
-Temukan jawaban dari beberapa pertanyaan yang paling sering diajukan.
-
-</p>
-
-</div>
-
-<div class="mt-16 max-w-4xl mx-auto">
-
-${faqs
-  .map(
-    (faq, index) => `
-
-<div class="faq-item border rounded-2xl mb-4 overflow-hidden">
-
-<button
-class="faq-button w-full flex justify-between items-center p-6 text-left font-semibold"
-data-index="${index}">
-
-<span>${faq.question}</span>
-
-<span class="faq-icon">+</span>
-
-</button>
-
-<div
-class="faq-content hidden px-6 pb-6 text-paragraph">
-
-${faq.answer}
-
-</div>
-
-</div>
-
-`,
-  )
-  .join("")}
-
-</div>
-
-</div>
-
-</section>
-
-`;
+        <div class="faq-list">
+          ${FAQS.map(
+            (faq, index) => `
+            <div class="faq-item" data-reveal style="transition-delay:${index * 60}ms">
+              <button class="faq-button" data-faq-button data-index="${index}" aria-expanded="false">
+                <span>${faq.question}</span>
+                <span class="faq-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </button>
+              <div class="faq-panel" data-faq-panel>
+                <div class="faq-panel-inner">
+                  <p>${faq.answer}</p>
+                </div>
+              </div>
+            </div>
+          `,
+          ).join("")}
+        </div>
+      </div>
+    </section>
+  `;
 }
