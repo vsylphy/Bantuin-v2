@@ -66,6 +66,26 @@ export function Footer() {
   return `
     <footer class="footer-surface border-t" style="border-color: var(--border-soft)">
 
+      <!-- Wave lembut, dua lapis buat efek "ombak" yang bergoyang pelan -->
+      <div class="footer-wave" aria-hidden="true">
+        <div class="footer-wave-track footer-wave-track-1">
+          <svg class="footer-wave-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+            <path d="M0,55 C100,20 200,90 300,55 C400,20 500,90 600,55 C700,20 800,90 900,55 C1000,20 1100,90 1200,55 L1200,100 L0,100 Z"/>
+          </svg>
+          <svg class="footer-wave-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+            <path d="M0,55 C100,20 200,90 300,55 C400,20 500,90 600,55 C700,20 800,90 900,55 C1000,20 1100,90 1200,55 L1200,100 L0,100 Z"/>
+          </svg>
+        </div>
+        <div class="footer-wave-track footer-wave-track-2">
+          <svg class="footer-wave-svg footer-wave-svg-accent" viewBox="0 0 1200 100" preserveAspectRatio="none">
+            <path d="M0,65 C150,30 300,100 450,65 C600,30 750,100 900,65 C1050,30 1200,100 1200,65 L1200,100 L0,100 Z"/>
+          </svg>
+          <svg class="footer-wave-svg footer-wave-svg-accent" viewBox="0 0 1200 100" preserveAspectRatio="none">
+            <path d="M0,65 C150,30 300,100 450,65 C600,30 750,100 900,65 C1050,30 1200,100 1200,65 L1200,100 L0,100 Z"/>
+          </svg>
+        </div>
+      </div>
+
       <!-- Watermark wordmark raksasa, samar, di belakang konten -->
       <span class="footer-watermark" aria-hidden="true">BANTU.IN</span>
 

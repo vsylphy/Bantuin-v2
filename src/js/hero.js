@@ -117,12 +117,17 @@ function initPhotoRotation() {
   const frameB = document.querySelector(".hero-photo-frame-b");
   if (!frameA || !frameB || !TEAM_PAIRS.length) return;
 
-  let index = 0;
+  // Rotasi otomatis DIMATIKAN untuk sementara: baru 1 dari 5 anggota tim
+  // yang punya foto asli, jadi kalau tetap muter, sering-sering yang
+  // muncul cuma 2 slot placeholder kosong sekaligus (kelihatan aneh).
+  // Begitu TEAM di components/hero.js sudah punya minimal 4 foto asli,
+  // hapus kondisi early-return ini supaya rotasi otomatis kembali jalan.
   renderFrameContent(frameA, TEAM_PAIRS[0][0]);
   renderFrameContent(frameB, TEAM_PAIRS[0][1]);
+  return;
 
-  if (TEAM_PAIRS.length < 2) return;
-
+  // eslint-disable-next-line no-unreachable
+  let index = 0;
   setInterval(() => {
     index = (index + 1) % TEAM_PAIRS.length;
     crossfadeFrame(frameA, TEAM_PAIRS[index][0]);

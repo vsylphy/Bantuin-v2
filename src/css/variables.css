@@ -26,8 +26,15 @@
   --color-cream-50: #f7f8f2;
   --color-sand-200: #e7ebdd;
 
+  /* --- Netral gelap: dasar dark mode, sengaja nyaris hitam (bukan hijau) --- */
+  --color-obsidian-950: #0a0b0a;
+  --color-obsidian-900: #0e100f;
+  --color-obsidian-800: #141715;
+  --color-obsidian-700: #1c211e;
+
   /* --- Token semantik: sumber warna untuk navbar & komponen baru --- */
   --surface: var(--color-cream-50);
+  --surface-alt: #eef1e6;
   --surface-raised: #ffffff;
   --ink: var(--color-forest-900);
   --ink-muted: #5c6d63;
@@ -37,13 +44,16 @@
   --accent-strong: var(--color-lime-400);
 }
 
-/* Mode gelap: tinggal toggle class "dark" di <html>, semua token semantik ikut berubah */
+/* Mode gelap: hitam sebagai warna dasar utama, hijau/lime cuma dipakai
+   sebagai aksen (tombol, link, glow) — bukan mewarnai seluruh permukaan.
+   Ini yang bikin dark mode kerasa elegan/premium, bukan "semua hijau". */
 .dark {
-  --surface: var(--color-forest-900);
-  --surface-raised: var(--color-forest-800);
+  --surface: var(--color-obsidian-950);
+  --surface-alt: var(--color-obsidian-900);
+  --surface-raised: var(--color-obsidian-800);
   --ink: var(--color-cream-50);
-  --ink-muted: #a9bfae;
-  --border-soft: var(--color-forest-700);
+  --ink-muted: #9aa39d;
+  --border-soft: var(--color-obsidian-700);
   --accent: var(--color-leaf-500);
   --accent-hover: var(--color-lime-400);
   --accent-strong: var(--color-lime-400);
