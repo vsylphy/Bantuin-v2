@@ -1,0 +1,977 @@
+@utility container-custom {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* Container khusus navbar: max-width + padding simetris, dijamin konsisten
+   karena tidak bergantung pada urutan import @utility lain. */
+.container-nav {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .container-nav {
+    padding-inline: 2.5rem;
+  }
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.7rem;
+  border-radius: 14px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 8px 20px -10px
+    color-mix(in oklab, var(--accent) 70%, transparent);
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px -10px
+    color-mix(in oklab, var(--accent) 70%, transparent);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.7rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  color: var(--ink);
+  transition: var(--transition);
+}
+
+.btn-outline:hover {
+  background: var(--surface-raised);
+  border-color: var(--accent);
+}
+
+/* Tombol toggle tema (ikon matahari/bulan) di navbar */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  color: var(--ink);
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  background: var(--surface-raised);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+/* --- Nav link desktop: underline animasi dari tengah --- */
+.nav-link {
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--accent);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--ink);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* --- Nav link versi mobile dropdown --- */
+.nav-link-mobile {
+  display: block;
+  padding: 0.7rem 0.85rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  border-left: 3px solid transparent;
+  transition: var(--transition);
+}
+
+.nav-link-mobile:hover,
+.nav-link-mobile:active {
+  color: var(--ink);
+  background: color-mix(in oklab, var(--accent) 8%, transparent);
+  border-left-color: var(--accent);
+}
+
+/* --- Mobile menu: accordion dropdown nempel di navbar, bukan modal ---
+   Animasi height pakai grid-template-rows 0fr -> 1fr, jauh lebih halus
+   daripada max-height dan tidak butuh backdrop/overlay gelap. */
+.mobile-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  border-top: 1px solid transparent;
+  background: var(--surface);
+  transition:
+    grid-template-rows 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.mobile-panel.is-open {
+  grid-template-rows: 1fr;
+  border-top-color: var(--border-soft);
+}
+
+.mobile-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer-surface {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--surface) 94%, var(--ink) 6%);
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Watermark wordmark raksasa di belakang konten footer.
+   Diposisikan menggantung di bagian bawah, terpotong sebagian oleh
+   footer-surface (overflow: hidden), supaya terasa disengaja seperti
+   footer studio/startup, bukan ditempel asal di tengah. */
+.footer-watermark {
+  position: absolute;
+  left: 50%;
+  bottom: -3.2rem;
+  transform: translateX(-50%);
+  font-weight: 800;
+  font-size: clamp(4.5rem, 15vw, 12rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--ink);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.footer-heading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.footer-link {
+  position: relative;
+  display: inline-flex;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.footer-link:hover {
+  color: var(--ink);
+  transform: translateX(3px);
+}
+
+.footer-link::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent-strong);
+  transform: translateY(-50%) scale(0);
+  transition: transform 0.25s ease;
+}
+
+.footer-link:hover::before {
+  transform: translateY(-50%) scale(1);
+}
+
+.social-icon {
+  display: grid;
+  place-items: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  color: var(--ink-muted);
+  transition: var(--transition);
+}
+
+.social-icon svg {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+.social-icon:hover {
+  color: white;
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -8px
+    color-mix(in oklab, var(--accent) 60%, transparent);
+}
+
+/* --- Map --- */
+.map-frame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 30px 60px -32px
+    color-mix(in oklab, var(--color-forest-950) 35%, transparent);
+  height: 22rem;
+}
+
+.map-embed {
+  width: 100%;
+  height: 100%;
+  filter: grayscale(6%) contrast(1.02);
+  transition: filter 0.5s ease;
+}
+
+/* Dark mode: jangan invert (bikin warna peta jadi aneh/ngejreng).
+   Cukup gelapkan brightness lalu tint pakai lapisan warna brand di atasnya
+   dengan mix-blend-mode, hasilnya terasa "peta gelap yang natural". */
+.dark .map-embed {
+  filter: grayscale(35%) brightness(0.62) contrast(1.05);
+}
+
+.map-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--color-forest-900);
+  opacity: 0;
+  mix-blend-mode: color;
+  transition: opacity 0.5s ease;
+}
+
+.dark .map-tint {
+  opacity: 0.45;
+}
+
+.map-card {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  max-width: 15rem;
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 16px 32px -16px
+    color-mix(in oklab, var(--color-forest-950) 40%, transparent);
+}
+
+@media (min-width: 640px) {
+  .map-card {
+    left: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
+
+.map-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: gap 0.25s ease;
+}
+
+.map-card-link:hover {
+  gap: 0.5rem;
+}
+
+/* --- Divider bergradasi, echo dari motif logo --- */
+.footer-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-pine-600) 25%,
+    var(--color-lime-400) 50%,
+    var(--color-pine-600) 75%,
+    transparent
+  );
+  opacity: 0.5;
+}
+
+/* --- Baris bawah: copyright + legal, dibuat lebih berkelas dari sekadar teks flat --- */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding-top: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.footer-bottom-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  opacity: 0.85;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.footer-bottom-links a {
+  transition: color 0.25s ease;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--ink);
+}
+
+.footer-bottom-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--border-soft);
+}
+
+/* --- Tombol kembali ke atas --- */
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 14px 28px -12px
+    color-mix(in oklab, var(--accent) 65%, transparent);
+  opacity: 0;
+  transform: translateY(12px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.back-to-top svg {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  background: var(--accent-hover);
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* --- Reveal on scroll (dipakai footer, bisa dipakai section lain nanti) --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s var(--transition),
+    transform 0.65s var(--transition);
+}
+
+[data-reveal].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero-section {
+  background: var(--surface);
+}
+
+.hero-container {
+  padding-top: 6.5rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 640px) {
+  .hero-container {
+    padding-top: 7.5rem;
+    padding-bottom: 7rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-container {
+    padding-top: 8.5rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* --- Corak background --- */
+.hero-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.3;
+  animation: blob-drift 12s ease-in-out infinite;
+}
+
+.hero-blob-1 {
+  width: 26rem;
+  height: 26rem;
+  top: -6rem;
+  right: -8rem;
+  background: var(--color-leaf-500);
+}
+
+.hero-blob-2 {
+  width: 22rem;
+  height: 22rem;
+  bottom: -8rem;
+  left: -9rem;
+  background: var(--color-lime-400);
+  opacity: 0.2;
+  animation-delay: 2.5s;
+}
+
+.hero-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    var(--border-soft) 1.4px,
+    transparent 1.4px
+  );
+  background-size: 26px 26px;
+  mask-image: radial-gradient(
+    ellipse 60% 55% at 30% 25%,
+    black 25%,
+    transparent 72%
+  );
+  opacity: 0.6;
+}
+
+/* --- Grid dua kolom: teks kiri, visual kanan (desktop) --- */
+.hero-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-columns {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3rem;
+  }
+}
+
+.hero-text {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-text {
+    text-align: left;
+  }
+}
+
+/* --- Badge kepercayaan --- */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-raised);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.hero-badge-avatars {
+  display: flex;
+}
+
+.hero-badge-avatars > * {
+  margin-left: -0.5rem;
+}
+
+.hero-badge-avatars > *:first-child {
+  margin-left: 0;
+}
+
+.hero-avatar-sm {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 2px solid var(--surface-raised);
+  flex-shrink: 0;
+}
+
+.hero-avatar-sm.hero-avatar-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-avatar-sm.hero-avatar-placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    150deg,
+    var(--color-pine-600),
+    var(--color-leaf-500)
+  );
+  color: color-mix(in oklab, white 82%, var(--color-lime-300));
+}
+
+.hero-avatar-sm.hero-avatar-placeholder svg {
+  width: 55%;
+  height: 55%;
+}
+
+/* --- Headline --- */
+.hero-heading {
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.hero-typewriter-line {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--color-pine-600);
+}
+
+.dark .hero-typewriter-line {
+  color: var(--color-lime-400);
+}
+
+.hero-typewriter {
+  white-space: nowrap;
+}
+
+.hero-cursor {
+  display: inline-block;
+  width: 3px;
+  margin-left: 3px;
+  height: 0.85em;
+  background: currentColor;
+  animation: cursor-blink 0.9s step-end infinite;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ink-muted);
+  max-width: 32rem;
+}
+
+.hero-text .hero-sub {
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .hero-text .hero-sub {
+    margin-inline: 0;
+  }
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-cta {
+    justify-content: flex-start;
+  }
+}
+
+/* --- Visual kanan: dua foto overlap + kartu melayang --- */
+.hero-visual {
+  position: relative;
+  max-width: 23rem;
+  margin-inline: auto;
+  padding: 2.75rem 1.75rem 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-visual {
+    max-width: none;
+    margin-inline: 0;
+    padding: 2.5rem 3rem 4rem 1.5rem;
+  }
+}
+
+.hero-visual-blob {
+  position: absolute;
+  inset: 4% 8%;
+  border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+  background: linear-gradient(
+    155deg,
+    var(--color-leaf-500),
+    var(--color-lime-400)
+  );
+  opacity: 0.22;
+  filter: blur(50px);
+  z-index: 0;
+  animation: blob-drift 10s ease-in-out infinite;
+}
+
+.hero-photo-stack {
+  position: relative;
+  z-index: 1;
+}
+
+/* Frame selalu putih solid dan tidak ikut berubah di dark mode, karena
+   foto tim memang berbackground putih. Kalau frame ikut menggelap,
+   putihnya foto malah jadi nabrak keras -- makanya dibuat tegas & konsisten. */
+.hero-photo-frame {
+  background: #ffffff;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 26px 50px -22px
+    color-mix(in oklab, var(--color-forest-950) 45%, transparent);
+}
+
+.hero-photo-frame-img,
+.hero-photo-frame-placeholder {
+  transition: opacity 0.32s ease;
+}
+
+.hero-photo-frame.is-fading .hero-photo-frame-img,
+.hero-photo-frame.is-fading .hero-photo-frame-placeholder {
+  opacity: 0;
+}
+
+.hero-photo-frame-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.hero-photo-frame-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: linear-gradient(
+    150deg,
+    var(--color-pine-600),
+    var(--color-leaf-500)
+  );
+  color: color-mix(in oklab, white 85%, var(--color-lime-300));
+}
+
+.hero-photo-frame-placeholder svg {
+  width: 28%;
+  height: 28%;
+  opacity: 0.9;
+}
+
+.hero-photo-frame-placeholder span {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.hero-photo-frame-a {
+  position: relative;
+  width: 76%;
+  aspect-ratio: 4 / 5;
+  z-index: 1;
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.hero-photo-frame-b {
+  position: absolute;
+  z-index: 2;
+  width: 50%;
+  aspect-ratio: 4 / 5;
+  right: -0.75rem;
+  bottom: -1.25rem;
+  border: 4px solid var(--surface);
+  animation: float-soft 6.5s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.hero-verified-badge {
+  position: absolute;
+  z-index: 3;
+  left: 8%;
+  bottom: -0.6rem;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  background: var(--color-pine-600);
+  color: #f7f8f2;
+  border: 3px solid var(--surface);
+  box-shadow: 0 10px 18px -8px rgba(10, 23, 16, 0.5);
+}
+
+.hero-verified-badge svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.hero-float-tag {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  z-index: 4;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  background: var(--color-forest-900);
+  color: var(--color-cream-50);
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 14px 24px -12px rgba(10, 23, 16, 0.5);
+  transform: rotate(4deg);
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+.hero-float-card {
+  position: absolute;
+  z-index: 4;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 22px 40px -20px
+    color-mix(in oklab, var(--color-forest-950) 45%, transparent);
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.hero-float-card-chat {
+  top: 0.5rem;
+  left: 0.25rem;
+  width: 12rem;
+  animation-delay: 0.4s;
+}
+
+@media (min-width: 1024px) {
+  .hero-float-card-chat {
+    left: -1.25rem;
+  }
+}
+
+.hero-float-chat-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.hero-float-chat-row-reply {
+  justify-content: flex-end;
+  margin-top: 0.4rem;
+}
+
+.hero-float-chat-avatar {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    150deg,
+    var(--color-pine-600),
+    var(--color-leaf-500)
+  );
+}
+
+.hero-float-chat-bubble {
+  font-size: 0.7rem;
+  line-height: 1.3;
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px 10px 10px 3px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.hero-float-chat-bubble-reply {
+  border-radius: 10px 10px 3px 10px;
+  background: var(--color-pine-600);
+  color: #f7f8f2;
+}
+
+.hero-float-card-stat {
+  bottom: 0.5rem;
+  left: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  animation-delay: 1.1s;
+}
+
+@media (min-width: 1024px) {
+  .hero-float-card-stat {
+    left: -1.5rem;
+  }
+}
+
+.hero-float-stat-icon {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.hero-float-stat-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.hero-float-stat-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.hero-float-stat-sub {
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+}
+
+/* --- Stats --- */
+.hero-stats {
+  margin-top: 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .hero-stats {
+    margin-top: 6.5rem;
+  }
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat h3 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.hero-stat p {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.hero-stat-divider {
+  width: 1px;
+  height: 2.5rem;
+  background: var(--border-soft);
+}
+
+@media (max-width: 480px) {
+  .hero-stat-divider {
+    display: none;
+  }
+  .hero-stats {
+    gap: 1.75rem 2.5rem;
+  }
+}

@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@import "./variables.css";
+@import "./utilities.css";
+@import "./animations.css";
+
+/* Aktifkan varian dark: berbasis class .dark, bukan cuma prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  transition:
+    background-color 0.45s var(--transition),
+    color 0.45s var(--transition);
+}
+
+.hero-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: var(--color-leaf-500);
+  opacity: 0.18;
+  filter: blur(120px);
+  right: -200px;
+  top: -120px;
+  z-index: -1;
+}
+
+button {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}

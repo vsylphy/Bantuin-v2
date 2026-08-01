@@ -1,0 +1,50 @@
+:root {
+  /* --- Token lama, tetap dipertahankan sementara --- */
+  /* dipakai oleh Hero/About/Features/dll yang belum kita redesain.
+     Nanti pas kita masuk ke section itu, token ini bisa kita pensiunkan. */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary: #7c3aed;
+  --background: #ffffff;
+  --text: #0f172a;
+  --paragraph: #64748b;
+  --border: #e2e8f0;
+  --container: 1280px;
+  --radius: 18px;
+  --transition: 0.3s ease;
+
+  /* --- Palet baru, diturunkan dari gradasi logo BANTU.IN --- */
+  --color-forest-950: #0a1710;
+  --color-forest-900: #0e1f16;
+  --color-forest-800: #163024;
+  --color-forest-700: #1e4132;
+  --color-pine-600: #256b45;
+  --color-pine-500: #2f8354;
+  --color-leaf-500: #4c9b57;
+  --color-lime-400: #a4cb4e;
+  --color-lime-300: #c7e077;
+  --color-cream-50: #f7f8f2;
+  --color-sand-200: #e7ebdd;
+
+  /* --- Token semantik: sumber warna untuk navbar & komponen baru --- */
+  --surface: var(--color-cream-50);
+  --surface-raised: #ffffff;
+  --ink: var(--color-forest-900);
+  --ink-muted: #5c6d63;
+  --border-soft: var(--color-sand-200);
+  --accent: var(--color-pine-600);
+  --accent-hover: var(--color-leaf-500);
+  --accent-strong: var(--color-lime-400);
+}
+
+/* Mode gelap: tinggal toggle class "dark" di <html>, semua token semantik ikut berubah */
+.dark {
+  --surface: var(--color-forest-900);
+  --surface-raised: var(--color-forest-800);
+  --ink: var(--color-cream-50);
+  --ink-muted: #a9bfae;
+  --border-soft: var(--color-forest-700);
+  --accent: var(--color-leaf-500);
+  --accent-hover: var(--color-lime-400);
+  --accent-strong: var(--color-lime-400);
+}
