@@ -769,30 +769,14 @@
   animation: blob-drift 10s ease-in-out infinite;
 }
 
-.hero-photo-row {
+.hero-photo-stack {
   position: relative;
   z-index: 1;
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
+  margin-top: 3.75rem;
 }
 
-@media (min-width: 640px) {
-  .hero-photo-row {
-    gap: 1.25rem;
-  }
-}
-
-/* Frame ikut warna permukaan tema (bukan dipaksa putih), supaya nggak
-   nabrak keras di dark mode. Foto sendiri sudah punya bg putih bawaan,
-   jadi ini cuma kelihatan di sela rounded corner / slot placeholder. */
 .hero-photo-frame {
-  background: var(--surface-raised);
-  border: 1px solid var(--border-soft);
-  border-radius: 26px;
   overflow: hidden;
-  box-shadow: 0 26px 50px -22px
-    color-mix(in oklab, var(--color-forest-950) 45%, transparent);
 }
 
 .hero-photo-frame-img,
@@ -820,22 +804,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  text-align: center;
+  gap: 0.4rem;
   background: linear-gradient(
-    160deg,
-    var(--surface-raised) 0%,
-    var(--surface) 100%
+    150deg,
+    var(--color-pine-600),
+    var(--color-leaf-500)
   );
-  color: var(--ink-muted);
+  color: color-mix(in oklab, white 85%, var(--color-lime-300));
 }
 
 .hero-photo-frame-placeholder svg {
-  width: 26%;
-  height: 26%;
-  opacity: 0.55;
-  color: var(--accent);
+  width: 28%;
+  height: 28%;
+  opacity: 0.9;
 }
 
 .hero-photo-frame-placeholder span {
@@ -843,19 +824,24 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .hero-photo-frame-a {
-  width: 56%;
+  position: relative;
+  width: 76%;
   aspect-ratio: 4 / 5;
+  z-index: 1;
   animation: float-soft 6s ease-in-out infinite;
 }
 
 .hero-photo-frame-b {
-  width: 44%;
+  position: absolute;
+  z-index: 2;
+  width: 50%;
   aspect-ratio: 4 / 5;
-  margin-bottom: 1.75rem;
+  right: -0.75rem;
+  bottom: -1.25rem;
   animation: float-soft 6.5s ease-in-out infinite;
   animation-delay: 0.8s;
 }
@@ -863,8 +849,8 @@
 .hero-verified-badge {
   position: absolute;
   z-index: 3;
-  left: 52%;
-  bottom: 1.4rem;
+  left: 8%;
+  bottom: -0.6rem;
   display: grid;
   place-items: center;
   width: 2.1rem;
@@ -919,6 +905,10 @@
 @media (min-width: 1024px) {
   .hero-float-card-chat {
     left: -1.25rem;
+    top: -1.5rem;
+  }
+  .hero-photo-stack {
+    margin-top: 0; /* di desktop layout sudah punya jarak sendiri dari padding hero-visual */
   }
 }
 
@@ -1049,7 +1039,6 @@
     gap: 1.75rem 2.5rem;
   }
 }
-
 /* ==========================================================================
    About
    ========================================================================== */
@@ -1078,6 +1067,9 @@
   }
   .about-text {
     order: 1;
+  }
+  .hero-photo-frame-a {
+    margin-top: 2.7rem;
   }
 }
 
