@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { href: "#about", label: "Tentang" },
   { href: "#features", label: "Fitur" },
   { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Kontak" },
+  { href: "#cta", label: "Kontak" },
 ];
 
 function themeToggleIcon() {

@@ -18,7 +18,7 @@ const LAYANAN_LINKS = [
 
 const PERUSAHAAN_LINKS = [
   { label: "Tentang Kami", href: "#about" },
-  { label: "Cara Kerja", href: "#how-it-works" },
+  { label: "Cara Kerja", href: "#howitworks" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontak", href: "#contact" },
 ];
