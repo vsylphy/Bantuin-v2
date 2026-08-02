@@ -1,4 +1,4 @@
-const WA_NUMBER = "6281234567890"; // TODO: ganti dengan nomor WA bisnis asli
+const WA_NUMBER = "6285178465471"; // TODO: ganti dengan nomor WA bisnis asli
 const WA_MESSAGE = encodeURIComponent(
   "Halo BANTU.IN! Aku butuh bantuan, boleh dibantu?",
 );
@@ -86,7 +86,7 @@ export function Navbar() {
             ).join("")}
           </ul>
           <a href="${WA_LINK}" target="_blank" rel="noopener" class="btn-primary w-full mt-3 mb-4">
-            Mulai
+            Chat Sekarang
           </a>
         </div>
       </div>

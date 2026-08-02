@@ -3,7 +3,7 @@
 // Features, dipakai sebagai penutup yang menonjol sebelum Footer.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const WA_NUMBER = "6281234567890"; // TODO: samakan dengan nomor di navbar.js/footer.js/hero.js
+const WA_NUMBER = "6285178465471"; // TODO: samakan dengan nomor di navbar.js/footer.js/hero.js
 const WA_MESSAGE = encodeURIComponent(
   "Halo BANTU.IN! Aku butuh bantuan, boleh dibantu?",
 );
