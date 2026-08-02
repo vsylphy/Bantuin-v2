@@ -55,7 +55,7 @@ export function Navbar() {
         <div class="hidden md:flex items-center gap-3 shrink-0">
           ${themeToggleIcon()}
           <a href="${WA_LINK}" target="_blank" rel="noopener" class="btn-primary">
-            Mulai
+            Chat Sekarang
           </a>
         </div>
 
