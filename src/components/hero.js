@@ -4,7 +4,7 @@ import andikaImg from "../assets/images/team/andika.png";
 import raihanImg from "../assets/images/team/raihan.png";
 import ojanImg from "../assets/images/team/ojan.png";
 
-const WA_NUMBER = "6281234567890"; // TODO: samakan dengan nomor di navbar.js & footer.js
+const WA_NUMBER = "6285178465471"; // TODO: samakan dengan nomor di navbar.js & footer.js
 const WA_MESSAGE = encodeURIComponent(
   "Halo BANTU.IN! Aku butuh bantuan, boleh dibantu?",
 );
